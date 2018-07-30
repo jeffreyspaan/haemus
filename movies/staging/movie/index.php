@@ -44,7 +44,7 @@ function breadcrumbs() {
           <h3>Browse</h3>
           <ul>
             <li><a href="/movies/staging/discover" class="active"><i class="large material-icons">explore</i><span>Discover</span></a></li>
-            <li><a href="#"><i class="large material-icons">trending_up</i><span>Trending</span></a></li>
+            <li><a href="#"><i class="large material-icons">trending_up</i><span>Test</span></a></li>
             <li><a href="#"><i class="large material-icons">face</i><span>Genres</span></a></li>
             <li><a href="#"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
           </ul>
