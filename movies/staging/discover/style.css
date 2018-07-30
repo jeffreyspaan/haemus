@@ -1,0 +1,132 @@
+.grid-wrap {
+  grid-template-rows: 60px minmax(360px, max-content) auto;
+}
+
+.item-d {
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  background-color: #17161b;
+  background-blend-mode: multiply;
+  transition: background-image 0.5s ease-in-out;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  padding: 0 30px;
+  box-shadow: inset 0 0px 90px -20px black;
+}
+
+.item-d > div {
+  place-self: center;
+}
+
+.item-d .carousel {
+  transform: translateY(-50px);
+  height: 400px;
+  -webkit-perspective: 800px;
+  perspective: 800px;
+}
+
+.item-e {
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  background: #2d2c31;
+  padding: 30px 0 0 30px;
+}
+
+.item-e .sort-grid {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  padding-bottom: 30px;
+}
+
+.item-e .sort-grid a {
+  line-height: 30px;
+  margin: 0 10px;
+}
+
+.item-e .sort-grid a.active {
+  color: #d2d2d2;
+}
+
+.item-e .sort-grid h2 {
+  margin-bottom: 0;
+}
+
+.item-e .watch-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  /* grid-template-rows: repeat(4, minmax(370px, max-content)); */
+  /* transition: all 0.5s ease-in-out 1s; */
+  opacity: 0;
+  min-height: 500px;
+}
+
+
+.item-e .watch-grid .movie-item {
+  padding: 0 30px 30px 0;
+  display: grid;
+  grid-template-rows: auto 50px;
+  max-width: 100%;
+}
+
+.item-e .watch-grid .movie-item .movie-image {
+  background: #17161b;
+  filter: brightness(0.8);
+  transition: 0.3s all ease;
+}
+
+.item-e .watch-grid .movie-item .movie-image:hover {
+  filter: brightness(1);
+}
+
+
+
+.item-e .watch-grid .movie-item .movie-title {
+  margin-top: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 20px;
+  color: #e8e8e8;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.item-e .watch-grid .movie-item .movie-title h2 {
+  margin: 0;
+}
+
+.item-f {
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  background: #2d2c31;
+  padding: 0px 30px 30px 30px;
+  text-align: center;
+}
+
+.item-f .pagination li {
+  margin-right: 5px;
+  border-radius: 0;
+  transition: 0.3s all ease;
+}
+
+.item-f .pagination li a {
+  color: #797979;
+}
+
+.item-f .pagination li:hover, .item-f .pagination li:active{
+  background-color: #17161b
+}
+
+.item-f .pagination li.active {
+  background-color: #fbd94c !important;
+}
+
+.item-f .pagination li.active a {
+  color: #2d2c31;
+}
