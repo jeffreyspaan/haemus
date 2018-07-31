@@ -8,7 +8,6 @@
   grid-row-start: 2;
   grid-row-end: 2;
   background-color: #17161b;
-  background-blend-mode: multiply;
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -32,7 +31,7 @@
 .item-e .watch-grid {
   display: grid;
   grid-template-columns: repeat(5, 20%);
-  grid-template-rows: repeat(4, minmax(370px, max-content));
+  grid-template-rows: repeat(4, minmax(200px, max-content));
   opacity: 0;
 }
 
@@ -101,4 +100,28 @@
 
 .item-f .pagination li.active a {
   color: #2d2c31;
+}
+
+.genre-item {
+  display: grid;
+  padding: 0 30px 30px 0;
+}
+
+.genre-item > .genre-link {
+  place-self: stretch;
+  display: grid;
+  background-size: cover;
+  background-color: rgba(23, 22, 27, 0.76);
+  background-blend-mode: multiply;
+  background-position: center;
+  transition: 0.3s all ease;
+  filter: brightness(0.8);
+}
+
+.genre-item > .genre-link:hover {
+  filter: brightness(1);
+}
+
+.genre-item > a > h3 {
+  place-self: center;
 }

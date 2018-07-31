@@ -33,7 +33,7 @@ $(document).ready(function() {
 
       let genresArray = [];
       movieData.genres.forEach(function(e) {
-        let link = '<a href="/discover?g=' + e.id + '">' + e.name +'</a>';
+        let link = `<a href="/movies/staging/genres/?g=${e.id}-${e.name}">${e.name}</a>`;
         genresArray.push(link);
       });
 

@@ -36,13 +36,26 @@
             <li><a href="#"><i class="large material-icons">format_list_bulleted</i><span>Watchlist</span></a></li>
             <li><a href="#"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
           </ul>
-          <h3>My genres</h3>
-          <ul>
-            <li><a href="#"><span>Action</span></a></li>
-            <li><a href="#"><span>Thriller</span></a></li>
-            <li><a href="#"><span>Adventure</span></a></li>
-            <li><a href="#"><span>Mystery</span></a></li>
-            <li><a href="#"><span>Humor</span></a></li>
+          <h3>Genres</h3>
+          <ul class="genres-list">
+            <li><a href="/movies/staging/genres/?g=28-Action" class="genre-Action"><span>Action</span></a></li>
+            <li><a href="/movies/staging/genres/?g=12-Adventure" class="genre-Adventure"><span>Adventure</span></a></li>
+            <li><a href="/movies/staging/genres/?g=16-Animation" class="genre-Animation"><span>Animation</span></a></li>
+            <li><a href="/movies/staging/genres/?g=35-Comedy" class="genre-Comedy"><span>Comedy</span></a></li>
+            <li><a href="/movies/staging/genres/?g=80-Crime" class="genre-Crime"><span>Crime</span></a></li>
+            <li><a href="/movies/staging/genres/?g=99-Documentary" class="genre-Documentary"><span>Documentary</span></a></li>
+            <li><a href="/movies/staging/genres/?g=18-Drama" class="genre-Drama"><span>Drama</span></a></li>
+            <li><a href="/movies/staging/genres/?g=10751-Family" class="genre-Family"><span>Family</span></a></li>
+            <li><a href="/movies/staging/genres/?g=14-Fantasy" class="genre-Fantasy"><span>Fantasy</span></a></li>
+            <li><a href="/movies/staging/genres/?g=36-History" class="genre-History"><span>History</span></a></li>
+            <li><a href="/movies/staging/genres/?g=27-Horror" class="genre-Horror"><span>Horror</span></a></li>
+            <li><a href="/movies/staging/genres/?g=10402-Music" class="genre-Music"><span>Music</span></a></li>
+            <li><a href="/movies/staging/genres/?g=9648-Mystery" class="genre-Mystery"><span>Mystery</span></a></li>
+            <li><a href="/movies/staging/genres/?g=10749-Romance" class="genre-Romance"><span>Romance</span></a></li>
+            <li><a href="/movies/staging/genres/?g=878-Science Fiction" class="genre-Science Fiction"><span>Science Fiction</span></a></li>
+            <li><a href="/movies/staging/genres/?g=53-Thriller" class="genre-Thriller"><span>Thriller</span></a></li>
+            <li><a href="/movies/staging/genres/?g=10752-War" class="genre-War"><span>War</span></a></li>
+            <li><a href="/movies/staging/genres/?g=37-Western" class="genre-Western"><span>Western</span></a></li>
           </ul>
         </div>
       </div>
@@ -64,7 +77,7 @@
         </div>
       </div>
       <div id="display-backdrop" class="item item-d">
-        <h2>Genres<span> » <span></span>Action</span></h2>
+        <h2 id="display-genre-name"></h2>
       </div>
       <div class="item item-e">
         <div class="watch-grid">

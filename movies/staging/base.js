@@ -43,7 +43,7 @@ function displayMovies() {
       let title = e.title;
       let posterURL = theMovieDb.common.images_uri + 'w370_and_h556_bestv2' + e.poster_path;
       let id = e.id;
-      let element = `<div class="movie-item"><a class="movie-image" href="/movies/staging/movie/?m=${id}"><img src="${posterURL}" alt="${title}"></a><a href="/movies/staging/movie/?m=${id}" class="movie-title">${title}</a></div>`;
+      let element = `<div class="movie-item"><a class="movie-image z-depth-3" href="/movies/staging/movie/?m=${id}"><img src="${posterURL}" alt="${title}"></a><a href="/movies/staging/movie/?m=${id}" class="movie-title">${title}</a></div>`;
       $('.watch-grid').append(element);
     });
     pagination(listData.page, listData.total_pages);
