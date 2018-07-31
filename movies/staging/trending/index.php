@@ -25,8 +25,8 @@
         <div class="menu">
           <h3>Browse</h3>
           <ul>
-            <li><a href="/movies/staging/discover" class="active"><i class="large material-icons">explore</i><span>Discover</span></a></li>
-            <li><a href="/movies/staging/trending"><i class="large material-icons">trending_up</i><span>Trending</span></a></li>
+            <li><a href="/movies/staging/discover"><i class="large material-icons">explore</i><span>Discover</span></a></li>
+            <li><a href="/movies/staging/trending"  class="active"><i class="large material-icons">trending_up</i><span>Trending</span></a></li>
             <li><a href="/movies/staging/genres"><i class="large material-icons">face</i><span>Genres</span></a></li>
             <li><a href="#"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
           </ul>
@@ -64,37 +64,11 @@
         </div>
       </div>
       <div class="item item-d">
-        <div class="carousel">
-          <a class="carousel-item" href><img src></a>
-          <a class="carousel-item" href><img src></a>
-          <a class="carousel-item" href><img src></a>
-          <a class="carousel-item" href><img src></a>
-          <a class="carousel-item" href><img src></a>
-        </div>
-        <div class="carousel-details">
-          <h2></h2>
-          <p></p>
+        <h2>Trending movies</h2>
+        <div class="watch-grid">
         </div>
       </div>
       <div class="item item-e">
-        <div class="sort-grid">
-          <h2>Discover movies</h2>
-          <div class="sort-type">
-            <a href="#!" class="change-sort active" data-sort-type="popularity">Popularity</a> /
-            <a href="#!" class="change-sort" data-sort-type="release_date">Release date</a> /
-            <a href="#!" class="change-sort" data-sort-type="vote_average">Rating</a>
-          </div>
-          <div class="sort-year">
-            <a href="#!" class="change-sort" data-sort-year="1960">All time</a> /
-            <a href="#!" class="change-sort active" data-sort-year="2018">2018</a> /
-            <a href="#!" class="change-sort" data-sort-year="2017">2017</a>
-          </div>
-        </div>
-        <div class="watch-grid">
-
-        </div>
-      </div>
-      <div class="item item-f">
         <ul class="pagination">
           <li class="change-page active"><a href="#!">1</a></li>
           <li class="change-page"><a href="#!">2</a></li>
@@ -102,6 +76,8 @@
           <li class="change-page"><a href="#!">4</a></li>
           <li class="change-page"><a href="#!">5</a></li>
         </ul>
+      </div>
+      <div class="item item-f">
       </div>
       <div class="item item-g">
       </div>
@@ -111,7 +87,6 @@
     <!-- The Movie Database js-->
     <script src="/assets/js/themoviedb.js"></script>
     <script src="/movies/staging/base.js"></script>
-    <script src="discover.js"></script>
-
+    <script src="trending.js"></script>
   </body>
 </html>

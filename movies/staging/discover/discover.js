@@ -1,11 +1,16 @@
+function getFilterOptions() {
+  return {'primary_release_date.gte': sortYear, 'page': page, 'vote_count.gte': minimumVote, 'sort_by': sortType + '.' + sortOrder};
+}
+
+let page = 1;
+let minimumVote = 100;
+
+let sortYear = '2018-01-01';
+let sortType = 'popularity';
+let sortOrder = 'desc';
+
+
 $(document).ready(function() {
-
-  let page = 1;
-  let minimumVote = 100;
-
-  let sortYear = '2018-01-01';
-  let sortType = 'popularity';
-  let sortOrder = 'desc';
 
   createCarousel();
   displayMovies();
@@ -36,10 +41,6 @@ $(document).ready(function() {
     displayMovies();
   });
 
-  function getFilterOptions() {
-    return {'primary_release_date.gte': sortYear, 'page': page, 'vote_count.gte': minimumVote, 'sort_by': sortType + '.' + sortOrder};
-  }
-
   function createCarousel() {
     theMovieDb.discover.getMovies({'primary_release_date.gte': '2018-07-20', 'vote_count.gte': 10, 'sort_by': 'popularity.desc'}, (jsondata) => {
       let listData = JSON.parse(jsondata);
@@ -61,57 +62,10 @@ $(document).ready(function() {
     }, errorCB);
   }
 
-  function displayMovies() {
-    let filterOptions = getFilterOptions();
-    $('.watch-grid').empty();
-    theMovieDb.discover.getMovies(filterOptions, (jsondata) => {
-      let listData = JSON.parse(jsondata);
-            console.log(listData);
-      listData.results.forEach(function(e) {
-        let title = e.title;
-        let posterURL = theMovieDb.common.images_uri + 'w370_and_h556_bestv2' + e.poster_path;
-        let id = e.id;
-        let element = `<div class="movie-item"><a class="movie-image" href="/movies/staging/movie/?m=${id}"><img src="${posterURL}" alt="${title}"></a><a href="/movies/staging/movie/?m=${id}" class="movie-title">${title}</a></div>`;
-        $('.watch-grid').append(element);
-      });
-      pagination(listData.page, listData.total_pages);
-      $('.watch-grid').animate({opacity: "1"}, 500);
-    }, errorCB);
-  }
-
-  function pagination(currentPage, totalPages) {
-    $('.pagination').empty();
-    if (totalPages > 25 ) {
-      totalPages = 25;
-    }
-    for (var i = 1; i <= totalPages; i++) {
-      if (i != currentPage) {
-        $('.pagination').append(`<li class="change-page" data-page="${i}"><a href="#!">${i}</a></li>`);
-      } else {
-        $('.pagination').append(`<li class="change-page active"><a href="#!">${i}</a></li>`);
-      }
-    }
-    updatePaginationListeners();
-  }
-
-  function updatePaginationListeners() {
-    $('.change-page').off();
-    $('.change-page:not(.active)').on('click', function(e) {
-      page = $(this).attr('data-page');
-      $('.watch-grid').animate({opacity: "0"}, 1);
-      displayMovies();
-    });
-  }
-
   theMovieDb.genres.getMovieList({}, (jsondata) => {
     let data  = JSON.parse(jsondata);
     console.log(data);
-
   }, errorCB);
-
-
-
-
 
 
 

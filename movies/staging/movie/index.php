@@ -44,8 +44,8 @@ function breadcrumbs() {
           <h3>Browse</h3>
           <ul>
             <li><a href="/movies/staging/discover" class="active"><i class="large material-icons">explore</i><span>Discover</span></a></li>
-            <li><a href="#"><i class="large material-icons">trending_up</i><span>Trending</span></a></li>
-            <li><a href="#"><i class="large material-icons">face</i><span>Genres</span></a></li>
+            <li><a href="/movies/staging/trending"><i class="large material-icons">trending_up</i><span>Trending</span></a></li>
+            <li><a href="/movies/staging/genres"><i class="large material-icons">face</i><span>Genres</span></a></li>
             <li><a href="#"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
           </ul>
           <h3>My movies</h3>
@@ -96,7 +96,7 @@ function breadcrumbs() {
               <i class="material-icons">movie</i>
               <span>Add my movies</span>
             </a>
-            <a href="#" class="button watchlist active">
+            <a href="#" class="button watchlist">
               <i class="material-icons">playlist_add</i>
               <span>Add watchlist</span>
             </a>
@@ -108,9 +108,6 @@ function breadcrumbs() {
             <i class="material-icons large">play_circle_filled</i>
             <span>Watch Trailer</span>
           </a>
-        </div>
-        <div class="rating-large">
-          76
         </div>
       </div>
       <div class="item item-e">

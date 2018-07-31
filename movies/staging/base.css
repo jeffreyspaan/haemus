@@ -191,6 +191,15 @@ img {
   color: #d2d2d2;
 }
 
+.item-b ul li a:hover {
+    /* border-color: #d2d2d2; */
+    color: #d2d2d2;
+}
+
+.item-b ul li a.active i {
+    color: #d2d2d2;
+}
+
 .item-b ul li a.active i {
   color: #FADA49;
 }
