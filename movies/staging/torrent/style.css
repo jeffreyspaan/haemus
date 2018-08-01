@@ -1,0 +1,3 @@
+.grid-wrap {
+  grid-template-rows: 60px minmax(360px, max-content) auto;
+}
