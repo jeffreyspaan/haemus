@@ -51,8 +51,7 @@ $(document).ready(function() {
       if (e.id == id) {
         $('#display-backdrop').css('background-image', 'url(' + e.backdropURL + ')');
         $('#display-genre-name').html(e.name);
-        console.log(`.genre-${e.name}`);
-        $(`.genre-${e.name}`).addClass('active');
+        $(`.genre-${e.name}`).addClass('active'); // set menu item for genre to active
         if (e.id == 10752) {
           $('#display-backdrop').css('background-position', 'center');
         }

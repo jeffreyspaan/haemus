@@ -16,9 +16,10 @@
   <body class="discover">
     <div class="grid-wrap">
       <div class="item item-a">
-        <a href="#" class="title-wrapper">
-          <i class="material-icons">play_circle_filled</i>
-          <span class="title">Haemus</span>
+        <a href="#" class="logo-wrapper">
+          <!-- <i class="material-icons">play_circle_filled</i> -->
+          <img src="/assets/images/movies/logo-transparent.png" alt="">
+          <span class="title">MMDB</span>
         </a>
       </div>
       <div class="item item-b">
@@ -36,7 +37,10 @@
             <li><a href="#"><i class="large material-icons">format_list_bulleted</i><span>Watchlist</span></a></li>
             <li><a href="#"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
           </ul>
-          <h3>Genres</h3>
+          <a class="genres-list-trigger">
+            <h3>Genres</h3>
+              <i class="small material-icons">arrow_drop_down</i>
+          </a>
           <ul class="genres-list">
             <li><a href="/movies/staging/genres/?g=28-Action" class="genre-Action"><span>Action</span></a></li>
             <li><a href="/movies/staging/genres/?g=12-Adventure" class="genre-Adventure"><span>Adventure</span></a></li>
@@ -71,8 +75,8 @@
         <div class="item item-cb">
         </div>
         <div class="item item-cc">
-          <a href="#new-movie" class="modal-trigger">
-            <i class="material-icons z-depth-4">add</i>
+          <a href="#!" class="mobile-menu-trigger">
+            <i class="material-icons z-depth-4">menu</i>
           </a>
         </div>
       </div>
@@ -95,6 +99,7 @@
       <div class="item item-g">
       </div>
     </div>
+    <div class="mobile-menu-cover mobile-menu-trigger"></div>
     <script src="/assets/js/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <!-- The Movie Database js-->

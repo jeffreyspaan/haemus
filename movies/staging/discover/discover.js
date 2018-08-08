@@ -12,6 +12,7 @@ let sortOrder = 'desc';
 
 $(document).ready(function() {
 
+
   createCarousel();
   displayMovies();
 

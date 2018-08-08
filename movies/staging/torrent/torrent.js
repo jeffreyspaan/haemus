@@ -18,12 +18,24 @@ $(document).ready(function() {
   // file.appendTo('.item-d')
   // })
 
-  $.ajax({
-    url: "https://1337x.to/torrent/3145696/Avengers-Infinity-War-2018-1080p-WEB-DL-H264-AC3-EVO-EtHD/",
-  })
-    .done(function(data) {
-      console.log(data);
-    });
+
+  // let title = 'Parkerrr';
+  // let year = 2013;
+  //
+  //
+  // let request = $.ajax({
+  //   url:'netflix.php',
+  //   type:'POST',
+  //   data: 'title=' + title + '&year=' + year
+  // });
+  // request.done(function (response){
+  //   console.log(response);
+  // });
+
+
+
+
+
 
 
 });

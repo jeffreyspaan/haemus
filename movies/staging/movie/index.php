@@ -1,25 +1,7 @@
-<?php
-function breadcrumbs() {
-  if($location = substr(dirname($_SERVER['PHP_SELF']), 1))
-  	$dirlist = explode('/', $location);
-  else
-  	$dirlist = array();
-
-  $count = array_push($dirlist, basename($_SERVER['PHP_SELF']));
-
-  $address = 'http://'.$_SERVER['HTTP_HOST'];
-
-  echo '<a href="'.$address.'">Home</a>';
-
-  for($i = 0; $i < $count -1; $i++)
-  	echo '&nbsp;&raquo;&nbsp;<a href="'.($address .= '/'.$dirlist[$i]).'">'.$dirlist[$i].'</a>';
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title></title>
     <script type="text/javascript">
@@ -34,9 +16,10 @@ function breadcrumbs() {
   <body class="movie">
     <div class="grid-wrap">
       <div class="item item-a">
-        <a href="#" class="title-wrapper">
-          <i class="material-icons">play_circle_filled</i>
-          <span class="title">Haemus</span>
+        <a href="#" class="logo-wrapper">
+          <!-- <i class="material-icons">play_circle_filled</i> -->
+          <img src="/assets/images/movies/logo-transparent.png" alt="">
+          <span class="title">MMDB</span>
         </a>
       </div>
       <div class="item item-b">
@@ -54,7 +37,10 @@ function breadcrumbs() {
             <li><a href="#"><i class="large material-icons">format_list_bulleted</i><span>Watchlist</span></a></li>
             <li><a href="#"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
           </ul>
-          <h3>Genres</h3>
+          <a class="genres-list-trigger">
+            <h3>Genres</h3>
+              <i class="small material-icons">arrow_drop_down</i>
+          </a>
           <ul class="genres-list">
             <li><a href="/movies/staging/genres/?g=28-Action" class="genre-Action"><span>Action</span></a></li>
             <li><a href="/movies/staging/genres/?g=12-Adventure" class="genre-Adventure"><span>Adventure</span></a></li>
@@ -89,8 +75,8 @@ function breadcrumbs() {
         <div class="item item-cb">
         </div>
         <div class="item item-cc">
-          <a href="#new-movie" class="modal-trigger">
-            <i class="material-icons z-depth-4">add</i>
+          <a href="#!" class="mobile-menu-trigger">
+            <i class="material-icons z-depth-4">menu</i>
           </a>
         </div>
       </div>
@@ -100,7 +86,7 @@ function breadcrumbs() {
         </div>
         <div class="overlay"></div>
         <div class="details">
-          <h1 id="display-title"></h1>
+          <h1 class="display-title"></h1>
           <div>
             <a href="#" class="button single favorite">
               <i class="material-icons">favorite</i>
@@ -113,25 +99,27 @@ function breadcrumbs() {
               <i class="material-icons">playlist_add</i>
               <span>Add watchlist</span>
             </a>
-            <?= breadcrumbs() ?>
+            <a href="#" class="button modal-trigger watch-trailer" data-target="watch-trailer">
+              <i class="material-icons">play_arrow</i>
+              <span>Watch trailer</span>
+            </a>
           </div>
         </div>
-        <div class="trailer-button">
-          <a href="#" data-target="watch-trailer" class="modal-trigger" id="display-trailer">
-            <i class="material-icons large">play_circle_filled</i>
-            <span>Watch Trailer</span>
+        <div class="watch-button">
+          <a href="#" data-target="watch-movie" class="modal-trigger" id="watch-button">
+            <i class="material-icons large pulse">play_circle_filled</i>
           </a>
         </div>
       </div>
       <div class="item item-e">
-        <div class="item item-ea">
+        <div class="item item-ea z-depth-3">
           <img id="display-poster" class="materialboxed" src="">
         </div>
         <div class="item item-eb">
           <h2>Overview</h2>
           <p id="display-overview"></p>
         </div>
-        <div class="item item-ec">
+        <div class="item item-ec z-depth-3">
           <h2>Information</h2>
           <div class="information-grid">
             <div class="item">Runtime</div>
@@ -149,7 +137,7 @@ function breadcrumbs() {
       </div>
       <div class="item item-f">
         <h2>Pictures</h2>
-        <div class="pictures-grid">
+        <div class="pictures-grid z-depth-3">
           <div class="item item-ha">
             <img id="display-picture-1" class="materialboxed" src="" alt="">
           </div>
@@ -165,53 +153,8 @@ function breadcrumbs() {
         <!-- <iframe width="1000" height="550" src="https://www.youtube.com/embed?listType=search&list=death+wish+trailer" frameborder="0" allow="encrypted-media" allowfullscreen></iframe> -->
       </div>
       <div class="item item-h">
-        <h2>Watch</h2>
+        <h2>Similar Movies</h2>
         <div class="watch-grid">
-          <div class="item item-fa">
-            <a id="display-torrent-link" href="#">
-              <img src="/assets/images/movies/watch-torrent.jpg" alt="">
-            </a>
-            <div>
-              <h2>1337X</h2>
-              <a href="#">1337x.to</a>
-            </div>
-          </div>
-          <div class="item item-fb">
-            <a id="display-movieonline-link" href="#">
-              <img src="/assets/images/movies/watch-movieonline.jpg" alt="">
-            </a>
-            <div>
-              <h2>Movie Online</h2>
-              <a href="https://www3.movieonline.tv/">www3.movieonline.tv</a>
-            </div>
-          </div>
-          <div class="item item-fc">
-            <a id="display-gomovies2-link" href="#">
-              <img src="/assets/images/movies/watch-gomovieshub-se.jpg" alt="">
-            </a>
-            <div>
-              <h2>Gomovies 2.0</h2>
-              <a href="https://www.gomovieshub.se/">www.gomovieshub.se</a>
-            </div>
-          </div>
-          <div class="item item-fd">
-            <a id="display-gomovies-link" href="#">
-              <img src="/assets/images/movies/watch-gomovies-vc.jpg" alt="">
-            </a>
-            <div>
-              <h2>Gomovies</h2>
-              <a href="http://www1.gomovies.vc/">www1.gomovies.vc</a>
-            </div>
-          </div>
-          <div class="item item-fe">
-            <a id="display-fmovies-link" href="#">
-              <img src="/assets/images/movies/watch-fmovies.jpg" alt="">
-            </a>
-            <div>
-              <h2>Fmovies</h2>
-              <a href="https://www7.fmovies.se/">www7.fmovies.se</a>
-            </div>
-          </div>
         </div>
       </div>
       <div class="item item-i">
@@ -221,11 +164,93 @@ function breadcrumbs() {
         <a href="#"><h6 style="margin:0;">About</h6></a>
       </div>
     </div>
+    <div id="watch-movie" class="modal">
+      <div class="modal-content">
+        <h2>Watch movie</h2>
+        <p>Download, rent or stream <span class="display-title">your movie</span> from multiple video services.</p>
+        <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s12 m3"><a href="#torrent">Torrent</a></li>
+              <li class="tab col s12 m3"><a class="active" href="#stream">Stream</a></li>
+              <li class="tab col s12 m3"><a href="#rent">Buy / rent</a></li>
+              <li class="tab col s12 m3"><a href="#cinema">Cinema</a></li>
+            </ul>
+          </div>
+          <div id="torrent" class="col s12 watch-options">
+            <a class="service" href="#" target="_blank" id="display-torrent-link">
+              <img src="/assets/images/movies/watch-1337x.png" alt="">
+              <h6>1337X</h6>
+            </a>
+          </div>
+          <div id="stream" class="col s12 watch-options">
+            <div class="preloader-wrapper small active services-preloader">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+            <a class="service" href="#" target="_blank" id="display-movieonline-link">
+              <img src="/assets/images/movies/watch-movieonline.png" alt="">
+              <h6>Movieonline</h6>
+              <span>(search)</span>
+            </a>
+            <a class="service" href="#" target="_blank" id="display-fmovies-link">
+              <img src="/assets/images/movies/watch-fmovies.png" alt="">
+              <h6>Fmovies</h6>
+              <span>(search)</span>
+            </a>
+            <a class="service" href="#" target="_blank" id="display-gomovies2-link">
+              <img src="/assets/images/movies/watch-gomovies2.png" alt="">
+              <h6>Gomovies 2.0</h6>
+              <span>(search)</span>
+            </a>
+            <a class="service" href="#" target="_blank" id="display-gomovies-link">
+              <img src="/assets/images/movies/watch-gomovies.png" alt="">
+              <h6>Gomovies</h6>
+              <span>(search)</span>
+            </a>
+          </div>
+          <div class="col s12 watch-options" id="rent">
+            <div class="preloader-wrapper small active services-preloader">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 watch-options" id="cinema">
+            <div class="preloader-wrapper small active services-preloader">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="watch-trailer" class="modal">
       <div class="modal-content">
         <iframe id="watch-trailer-iframe" width="560" height="315" src frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
     </div>
+    <div class="mobile-menu-cover mobile-menu-trigger"></div>
     <script src="/assets/js/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <!-- The Movie Database js-->

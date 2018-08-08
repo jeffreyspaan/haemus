@@ -1,14 +1,30 @@
-$( "#search-movie" ).keyup(searchMovies);
+$(document).ready(function() {
+  $( "#search-movie" ).keyup(searchMovies);
+
+  $('.mobile-menu-trigger').on('click', function() {
+    $('body').toggleClass('mobile-menu-active');
+  });
+
+  $('.genres-list-trigger').on('click', function(event) {
+    $(this).toggleClass('active');
+    $('.genres-list').toggleClass('active');
+  });
+
+});
 
 function searchMovies() {
   let query = encodeURI($('#search-movie').val());
   theMovieDb.search.getMovie({"query":query}, (jsondata) => {
     let searchData = JSON.parse(jsondata);
+    console.log(searchData);
 
     let titles = {};
 
     for (var i = 0; i < 6; i++) {
-      let title = searchData.results[i].title;
+      let date = searchData.results[i].release_date;
+      let year = date.substr(0,date.indexOf('-'));
+
+      let title = searchData.results[i].title + ' (' + year + ')';
       titles[title] = null;
     }
 
@@ -24,8 +40,10 @@ function searchMovies() {
 }
 
 function onAutocomplete() {
-  let query = encodeURI($('#search-movie').val());
-  theMovieDb.search.getMovie({"query": query }, (jsondata) => {
+  let query = $('#search-movie').val()
+  let queryTitle = query.substr(0,query.indexOf('('));
+  queryTitle = encodeURI(queryTitle);
+  theMovieDb.search.getMovie({"query": queryTitle }, (jsondata) => {
     let searchData = JSON.parse(jsondata).results[0];
     console.log(searchData);
     let tmdbId = searchData.id;
@@ -56,17 +74,32 @@ function displayUpcomingMovies() {
   $('.watch-grid').empty();
   theMovieDb.movies.getUpcoming(filterOptions, (jsondata) => {
     let listData = JSON.parse(jsondata);
-    console.log(listData);
     listData.results.forEach(function(e) {
       let title = e.title;
       let posterURL = theMovieDb.common.images_uri + 'w370_and_h556_bestv2' + e.poster_path;
       let id = e.id;
-      let element = `<div class="movie-item"><a class="movie-image" href="/movies/staging/movie/?m=${id}"><img src="${posterURL}" alt="${title}"></a><a href="/movies/staging/movie/?m=${id}" class="movie-title">${title}</a></div>`;
+      let element = `<div class="movie-item"><a class="movie-image z-depth-3" href="/movies/staging/movie/?m=${id}"><img src="${posterURL}" alt="${title}"></a><a href="/movies/staging/movie/?m=${id}" class="movie-title">${title}</a></div>`;
       $('.watch-grid').append(element);
     });
     pagination(listData.page, listData.total_pages);
     $('.watch-grid').animate({opacity: "1"}, 500);
   }, errorCB);
+}
+
+function displaySimilarMovies(id) {
+  $('.watch-grid').empty();
+  theMovieDb.movies.getSimilarMovies({"id": id}, (jsondata) => {
+    let listData = JSON.parse(jsondata);
+    console.log(listData);
+    for (var i = 0; i < 5; i++) {
+      let title = listData.results[i].title;
+      let posterURL = theMovieDb.common.images_uri + 'w370_and_h556_bestv2' + listData.results[i].poster_path;
+      let id = listData.results[i].id;
+      let element = `<div class="movie-item"><a class="movie-image" href="/movies/staging/movie/?m=${id}"><img src="${posterURL}" alt="${title}"></a><a href="/movies/staging/movie/?m=${id}" class="movie-title">${title}</a></div>`;
+      $('.watch-grid').append(element);
+    }
+    $('.watch-grid').animate({opacity: "1"}, 500);
+  }, errorCB)
 }
 
 function pagination(currentPage, totalPages) {
