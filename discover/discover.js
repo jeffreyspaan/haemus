@@ -47,7 +47,7 @@ $(document).ready(function() {
       let listData = JSON.parse(jsondata);
       for (var i = 0; i < 5; i++) {
         let currentCarouselItem = $(`.carousel-item:nth-child(${i + 1})`);
-        currentCarouselItem.attr('href', '/movies/staging/movie/?m=' + listData.results[i].id);
+        currentCarouselItem.attr('href', '/movie/?m=' + listData.results[i].id);
         currentCarouselItem.attr('data-backdrop', theMovieDb.common.images_uri + 'w1280' + listData.results[i].backdrop_path);
         currentCarouselItem.attr('data-title', listData.results[i].title);
         currentCarouselItem.attr('data-overview', listData.results[i].overview);

@@ -1,9 +1,21 @@
 $(document).ready(function() {
-  $( "#search-movie" ).keyup(searchMovies);
+
+  // set up search event listeners
+
+  $("#search-movie").keyup(searchMovies);
+
+  $('.search-form').on('submit', function(e) {
+    e.preventDefault();
+    goToSearchedMovie();
+  });
+
+  // set up mobile menu event listener
 
   $('.mobile-menu-trigger').on('click', function() {
     $('body').toggleClass('mobile-menu-active');
   });
+
+  // set up genres list event listener
 
   $('.genres-list-trigger').on('click', function(event) {
     $(this).toggleClass('active');
@@ -29,7 +41,7 @@ function searchMovies() {
     }
 
     $('input.autocomplete').autocomplete({
-      data: titles, onAutocomplete
+      data: titles, goToSearchedMovie
     });
 
     var instance = M.Autocomplete.getInstance($('input.autocomplete'));
@@ -39,7 +51,8 @@ function searchMovies() {
 
 }
 
-function onAutocomplete() {
+function goToSearchedMovie() {
+  console.log('test');
   let query = $('#search-movie').val()
   let queryTitle = query.substr(0,query.indexOf('('));
   queryTitle = encodeURI(queryTitle);
@@ -47,7 +60,7 @@ function onAutocomplete() {
     let searchData = JSON.parse(jsondata).results[0];
     console.log(searchData);
     let tmdbId = searchData.id;
-    window.location.href = "/movies/staging/movie/?m=" + tmdbId;
+    window.location.href = "/movie/?m=" + tmdbId;
   }, errorCB);
 }
 
@@ -79,6 +92,24 @@ function displayUpcomingMovies() {
       let posterURL = theMovieDb.common.images_uri + 'w370_and_h556_bestv2' + e.poster_path;
       let id = e.id;
       let element = `<div class="movie-item"><a class="movie-image z-depth-3" href="/movies/staging/movie/?m=${id}"><img src="${posterURL}" alt="${title}"></a><a href="/movies/staging/movie/?m=${id}" class="movie-title">${title}</a></div>`;
+      $('.watch-grid').append(element);
+    });
+    pagination(listData.page, listData.total_pages);
+    $('.watch-grid').animate({opacity: "1"}, 500);
+  }, errorCB);
+}
+
+function displayMoviesByGenre() {
+  let filterOptions = getFilterOptions();
+  $('.watch-grid').empty();
+  theMovieDb.genres.getMovies(filterOptions, (jsondata) => {
+    let listData = JSON.parse(jsondata);
+    console.log(listData);
+    listData.results.forEach(function(e) {
+      let title = e.title;
+      let posterURL = theMovieDb.common.images_uri + 'w370_and_h556_bestv2' + e.poster_path;
+      let id = e.id;
+      let element = `<div class="movie-item"><a class="movie-image z-depth-3" href="/movie/?m=${id}"><img src="${posterURL}" alt="${title}"></a><a href="/movie/?m=${id}" class="movie-title">${title}</a></div>`;
       $('.watch-grid').append(element);
     });
     pagination(listData.page, listData.total_pages);
@@ -122,7 +153,13 @@ function updatePaginationListeners() {
   $('.change-page:not(.active)').on('click', function(e) {
     page = $(this).attr('data-page');
     $('.watch-grid').animate({opacity: "0"}, 1);
-    displayMovies();
+    if ( $('body').hasClass('genres') ) {
+      displayMoviesByGenre();
+    } else if ( $('body').hasClass('trending') ) {
+      displayUpcomingMovies();
+    } else {
+      displayMovies();
+    }
   });
 }
 

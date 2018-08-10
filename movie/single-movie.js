@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  // get movie id and call displayMovieData function
+
   function getUrlVars() {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -12,11 +14,17 @@ $(document).ready(function() {
     return vars;
   }
 
-
   if (getUrlVars()['m']) {
     let id = getUrlVars()['m'].replace( /(\d+)(\D*)/i,'$1');
     displayMovieData(id);
   }
+
+  // set up material elements, e.g. modals, tabs & imagemodals
+
+  $('.materialboxed').materialbox();
+  $('#watch-movie.modal').modal({onCloseStart: stopVideo, onOpenStart: updateTabs});
+  $('#watch-trailer.modal').modal({onCloseStart: stopVideo});
+  $('.tabs').tabs();
 
   function updateTabs() {
     $('.watch-options').removeClass('active').css('display', 'none');
@@ -25,27 +33,35 @@ $(document).ready(function() {
     $('tabs').select('tab_id');
   }
 
-  $('.materialboxed').materialbox();
-  $('.modal').modal({onCloseStart: stopVideo, onOpenStart: updateTabs});
-  $('.tabs').tabs();
+  function stopVideo() {
+    let videoPlayerSource=$('#watch-trailer-iframe').attr("src");
+    $('#watch-trailer-iframe').attr("src", videoPlayerSource);
+  }
 
+  // moviedata functions
 
   function displayMovieData(id) {
     theMovieDb.movies.getById({"id":id}, (jsondata) => {
       let movieData = JSON.parse(jsondata);
-      console.log(movieData);
+
+
+      // create links to genres
 
       let genresArray = [];
       movieData.genres.forEach(function(e) {
-        let link = `<a href="/movies/staging/genres/?g=${e.id}-${e.name}">${e.name}</a>`;
+        let link = `<a href="/genres/?g=${e.id}-${e.name}">${e.name}</a>`;
         genresArray.push(link);
       });
 
       let genres = genresArray.join(', ');
 
+      // create 1337x torrent link
+
       let releaseFull = new Date(movieData.release_date);
       let releaseYear = releaseFull.getFullYear();
       let torrentLink = 'https://1337x.to/movie/' + id + '/' + encodeURI(movieData.title).replace(/\%20/g, '-') + '-' + releaseYear + '/';
+
+      // display basic movie data
 
       $('#display-backdrop').css('background-image', 'url(' + theMovieDb.common.images_uri + 'w1280' + movieData.backdrop_path + ')');
       $('.display-title').html(movieData.title);
@@ -66,11 +82,15 @@ $(document).ready(function() {
 
     }, errorCB);
 
+    // display trailer
+
     theMovieDb.movies.getVideos({"id":id}, (jsondata) => {
       let trailerData = JSON.parse(jsondata);
       let trailerURL = trailerData.results[0].key;
       $('#watch-trailer-iframe').attr('src', 'https://www.youtube-nocookie.com/embed/'  + trailerURL + '?rel=0&amp;showinfo=0');
     }, errorCB);
+
+    // display images
 
     theMovieDb.movies.getImages({"id":id}, (jsondata) => {
       let imagesData = JSON.parse(jsondata);
@@ -88,16 +108,13 @@ $(document).ready(function() {
       }
     }, errorCB);
 
+    // display similar movies (call to base.js)
+
     displaySimilarMovies(id);
 
-
-
   }
 
-  function stopVideo() {
-    let videoPlayerSource=$('#watch-trailer-iframe').attr("src");
-    $('#watch-trailer-iframe').attr("src", videoPlayerSource);
-  }
+  // get and display available watch services
 
   function displayServicesLinks(id, title) {
     let request = $.ajax({
@@ -137,9 +154,9 @@ $(document).ready(function() {
         if (response.patheCinema) {
           $('#cinema.watch-options').prepend(`<a class="service" href="${response.patheCinema}" target="_blank"><img src="/assets/images/movies/watch-pathe-cinema.png" alt=""><h6>Pathé</h6></a>`);
         }
-        $('.services-preloader').css('display', 'none');
+        $('.services-preloader').remove();
       } else {
-        $('.sevices-preloader').css('display', 'none');
+        $('.sevices-preloader').remove();
       }
     });
   }
