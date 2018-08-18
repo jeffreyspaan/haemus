@@ -1,11 +1,11 @@
 function getFilterOptions() {
-  return {'page': page};
+    return {'page': page};
 }
 
 let page = 1;
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     displayUpcomingMovies();
 

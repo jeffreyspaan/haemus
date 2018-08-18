@@ -5,7 +5,6 @@ include("connection.php");
 setlocale(LC_TIME, 'nl_NL', 'Dutch_Netherlands', 'Dutch');
 
 
-
 // GET variables and setup query's
 
 $order = $_GET['sort_order'] == 'descending' ? 'DESC' : 'ASC';
@@ -13,60 +12,59 @@ $column = $_GET['sort_colum'];
 $sort_query = "ORDER BY " . $column . " " . $order;
 
 if (empty($order) || empty($column)) {
-  $sort_query = "";
+    $sort_query = "";
 }
 
 $ids = isset($_GET['ids']) ? $_GET['ids'] : [];
-$ids_query = "WHERE `id` IN (" . implode(",",$ids) . ")";
+$ids_query = "WHERE `id` IN (" . implode(",", $ids) . ")";
 
 if (empty($ids)) {
-  $ids_query = "";
+    $ids_query = "";
 }
 
-$final_query = "SELECT * FROM `movies` ". $ids_query . " " . $sort_query . " ";
+$final_query = "SELECT * FROM `movies` " . $ids_query . " " . $sort_query . " ";
 
-$result=mysqli_query($con, $final_query);
+$result = mysqli_query($con, $final_query);
 
-while($data = mysqli_fetch_assoc($result))
-{
-  $added = (new DateTime($data['added']));
-  $added = strftime('%#d %B', $added->getTimeStamp());
+while ($data = mysqli_fetch_assoc($result)) {
+    $added = (new DateTime($data['added']));
+    $added = strftime('%#d %B', $added->getTimeStamp());
 
-  $encoded_title = urlencode($data['title']);
+    $encoded_title = urlencode($data['title']);
 
-  echo '<div class="movie-card">';
-  echo '<div class="movie-container">';
-  echo '<a class="cover" href="#">';
-  echo '<div class="poster flex-center">';
-  echo '<img src="' . $data['poster_url'] . '" alt="poster">';
-  echo '<div><i class="material-icons">play_arrow</i></div>';
-  echo '</div>';
-  echo '</a>';
-  echo '<div class="hero">';
-  echo '<div class="background">';
-  echo '<img src="' . $data['backdrop_url'] . '"/>';
-  echo '</div>';
-  echo '<div class="details">';
-  echo '<div class="title1">' . $data['title'] . '</div>';
-  echo '<div class="title2">' . $data['tagline'] . '</div>    ';
-  echo '<div>';
-  echo '<span class="card-rating">10</span>';
-  echo '<span class="year">' . $data['year'] . '</span>';
-  echo '</div>';
-  echo '</div> <!-- end details -->';
-  echo '</div> <!-- end hero -->';
-  echo '<div class="description">';
-  echo '<div class="column1">';
-  echo '<span class="tag">action</span>';
-  echo '<span class="tag">fantasy</span>';
-  echo '<span class="tag">adventure</span>';
-  echo '</div> <!-- end column1 -->';
-  echo '<div class="column2">';
-  echo '<p>' . $data['excerpt'] . '</p>';
-  echo '</div> <!-- end column2 -->';
-  echo '</div> <!-- end description -->';
-  echo '</div> <!-- end container -->';
-  echo '</div> <!-- end movie-card -->';
+    echo '<div class="movie-card">';
+    echo '<div class="movie-container">';
+    echo '<a class="cover" href="#">';
+    echo '<div class="poster flex-center">';
+    echo '<img src="' . $data['poster_url'] . '" alt="poster">';
+    echo '<div><i class="material-icons">play_arrow</i></div>';
+    echo '</div>';
+    echo '</a>';
+    echo '<div class="hero">';
+    echo '<div class="background">';
+    echo '<img src="' . $data['backdrop_url'] . '"/>';
+    echo '</div>';
+    echo '<div class="details">';
+    echo '<div class="title1">' . $data['title'] . '</div>';
+    echo '<div class="title2">' . $data['tagline'] . '</div>    ';
+    echo '<div>';
+    echo '<span class="card-rating">10</span>';
+    echo '<span class="year">' . $data['year'] . '</span>';
+    echo '</div>';
+    echo '</div> <!-- end details -->';
+    echo '</div> <!-- end hero -->';
+    echo '<div class="description">';
+    echo '<div class="column1">';
+    echo '<span class="tag">action</span>';
+    echo '<span class="tag">fantasy</span>';
+    echo '<span class="tag">adventure</span>';
+    echo '</div> <!-- end column1 -->';
+    echo '<div class="column2">';
+    echo '<p>' . $data['excerpt'] . '</p>';
+    echo '</div> <!-- end column2 -->';
+    echo '</div> <!-- end description -->';
+    echo '</div> <!-- end container -->';
+    echo '</div> <!-- end movie-card -->';
 
 }
 
@@ -96,7 +94,6 @@ while($data = mysqli_fetch_assoc($result))
 // echo "<p>" . $data['excerpt'] . "</p>";
 // echo "</div>";
 // echo "</div>";
-
 
 
 // echo "<script type='text/javascript'>var s = document.createElement('script');s.type = 'text/javascript';s.src = 'loadin.js';$('body').append(s);</script>"

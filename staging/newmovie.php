@@ -30,7 +30,7 @@ $rating = (int)$rating;
 $seen = array_key_exists('seen', $_POST) ? $_POST['seen'] : '';
 $seen = (int)$seen;
 
-$sql = "INSERT INTO movies (uuid, title, tagline, excerpt, year, poster_url, backdrop_url ,rating, seen) VALUES ('" . uniqid() . "', '" . $title . "', '" . $tagline . "', '" . $excerpt . "', '". $year . "', '" . $poster_url . "', '" . $backdrop_url . "', '". $rating. "', '". $seen. "')";
+$sql = "INSERT INTO movies (uuid, title, tagline, excerpt, year, poster_url, backdrop_url ,rating, seen) VALUES ('" . uniqid() . "', '" . $title . "', '" . $tagline . "', '" . $excerpt . "', '" . $year . "', '" . $poster_url . "', '" . $backdrop_url . "', '" . $rating . "', '" . $seen . "')";
 
 if ($con->query($sql)) {
     echo "New record created successfully<br>";

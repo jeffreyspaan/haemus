@@ -4,5 +4,5 @@
 // });
 
 $('.response-container').on('click', '.image-box', function () {
-     console.log($(this));
+    console.log($(this));
 });
