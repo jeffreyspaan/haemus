@@ -41,11 +41,6 @@ $(document).ready(function () {
     $('#login-form').on('submit', function (event) {
         event.preventDefault();
 
-        let loginMessage = $('#login-message');
-
-        loginMessage.removeClass('error');
-        loginMessage.empty();
-
         let request = $.ajax({
             url: '/login.php',
             type: 'POST',
@@ -54,10 +49,8 @@ $(document).ready(function () {
         request.done(function (jsonResponse) {
             console.log(jsonResponse);
             let response = JSON.parse(jsonResponse);
-            loginMessage.html(response.message);
-            if (response.hasError) {
-                loginMessage.addClass('error');
-            } else {
+            M.toast({html: response.message, displayLength: 5000, classes: 'z-depth-3'});
+            if (!response.hasError) {
                 let loginModalInstance = M.Modal.getInstance($('#account-connect'));
                 loginModalInstance.close();
                 location.reload();
@@ -68,11 +61,6 @@ $(document).ready(function () {
     $('#signup-form').on('submit', function (event) {
         event.preventDefault();
 
-        let signupMessage = $('#signup-message');
-
-        signupMessage.removeClass('error');
-        signupMessage.empty();
-
         let request = $.ajax({
             url: '/signup.php',
             type: 'POST',
@@ -81,50 +69,41 @@ $(document).ready(function () {
         request.done(function (jsonResponse) {
             console.log(jsonResponse);
             let response = JSON.parse(jsonResponse);
-            signupMessage.html(response.message);
+            M.toast({html: response.message, displayLength: 5000, classes: 'z-depth-3'});
             if (!response.hasError) {
                 let loginModalInstance = M.Modal.getInstance($('#account-connect'));
                 loginModalInstance.close();
                 location.reload();
-            } else {
-                signupMessage.addClass('error');
             }
         });
     });
 
     $("#logout").on("click", function () {
 
-        let accountSettingsMessage = $('#account-settings .message');
-
-        accountSettingsMessage.removeClass('error');
-        accountSettingsMessage.empty();
-
         let request = $.ajax({
             url: '/logout.php'
         });
         request.done(function (jsonResponse) {
             let response = JSON.parse(jsonResponse);
-            accountSettingsMessage.html(response.message);
+            M.toast({html: response.message, displayLength: 5000, classes: 'z-depth-3'});
             if (!response.hasError) {
                 let loginModalInstance = M.Modal.getInstance($('#account-settings'));
                 loginModalInstance.close();
                 location.reload();
-            } else {
-                accountSettingsMessage.addClass('error');
             }
         });
     });
 
-    $('.movie-item').draggable();
-
-    $(document).on('click','.movie-item', function(){
-        $('.movie-item ').draggable({
-            revert: "invalid", // when not dropped, the item will revert back to its initial position
-            containment: "document",
-            helper: "clone",
-            cursor: "move"
-        });
-    });
+    // $('.movie-item').draggable();
+    //
+    // $(document).on('click','.movie-item', function(){
+    //     $('.movie-item ').draggable({
+    //         revert: "invalid", // when not dropped, the item will revert back to its initial position
+    //         containment: "document",
+    //         helper: "clone",
+    //         cursor: "move"
+    //     });
+    // });
 
 
 

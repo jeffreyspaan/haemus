@@ -17,19 +17,19 @@ if (!empty($_POST['email']) && !empty($_POST['pass'])) {
             login($row['token'], $row['uuid'], $row['email'], $row['user']);
 
             $returnStatement['hasError'] = false;
-            $returnStatement['message'] = '';
+            $returnStatement['message'] = 'Logged in';
 
         } else {
             $returnStatement['hasError'] = true;
-            $returnStatement['message'] = 'The password is incorrect.';
+            $returnStatement['message'] = 'The password is incorrect';
         }
     } else {
         $returnStatement['hasError'] = true;
-        $returnStatement['message'] = 'User not found.';
+        $returnStatement['message'] = 'The username or password is invalid';
     }
 } else {
     $returnStatement['hasError'] = true;
-    $returnStatement['message'] = 'The username or password is invalid.';
+    $returnStatement['message'] = 'One or more fields are empty';
 }
 
 mysqli_close($con);

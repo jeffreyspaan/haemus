@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-require_once 'functions.php';
+require_once dirname(__FILE__) . '/../functions.php';
+
 
 $returnStatement = array();
 

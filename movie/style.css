@@ -325,10 +325,6 @@
         max-width: 100%;
     }
 
-    .item-d .details .button {
-        margin-top: 10px;
-    }
-
     .item-d .watch-button {
         margin-bottom: 100px;
     }
@@ -337,6 +333,7 @@
         max-height: fit-content;
         position: absolute;
         top: 40px !important;
+        min-height: fit-content;
     }
 
     .tabs {

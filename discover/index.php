@@ -39,8 +39,8 @@ require_once dirname(__FILE__) . '/../header.php';
             <h3>My movies</h3>
             <ul>
                 <li><a href="#"><i class="large material-icons">movie</i><span>All movies</span></a></li>
-                <li><a href="#"><i class="large material-icons">format_list_bulleted</i><span>Watchlist</span></a></li>
-                <li><a href="#"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
+                <li><a href="/watchlist"><i class="large material-icons">format_list_bulleted</i><span>Watchlist</span></a></li>
+                <li><a href="/favorites"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
             </ul>
             <a class="genres-list-trigger">
                 <h3>Genres</h3>

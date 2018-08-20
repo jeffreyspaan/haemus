@@ -17,7 +17,7 @@ require_once dirname(__FILE__) . '/../header.php';
     <link rel="stylesheet" href="/base.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="watchlist">
+<body class="favorites">
 <div class="grid-wrap">
     <div class="item item-a">
         <a href="#" class="logo-wrapper">
@@ -33,13 +33,13 @@ require_once dirname(__FILE__) . '/../header.php';
                 <li><a href="/discover"><i class="large material-icons">explore</i><span>Discover</span></a></li>
                 <li><a href="/trending"><i class="large material-icons">trending_up</i><span>Trending</span></a></li>
                 <li><a href="/genres"><i class="large material-icons">face</i><span>Genres</span></a></li>
-                <li><a href="#"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
+                <li><a href="#" class="active"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
             </ul>
             <h3>My movies</h3>
             <ul>
                 <li><a href="#"><i class="large material-icons">movie</i><span>All movies</span></a></li>
-                <li><a href="/watchlist" class="active"><i class="large material-icons">format_list_bulleted</i><span>Watchlist</span></a></li>
-                <li><a href="/favorites"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
+                <li><a href="/watchlist"><i class="large material-icons">format_list_bulleted</i><span>Watchlist</span></a></li>
+                <li><a href="#" class="active"><i class="large material-icons">favorite</i><span>Favorites</span></a></li>
             </ul>
             <a class="genres-list-trigger">
                 <h3>Genres</h3>
@@ -90,24 +90,20 @@ require_once dirname(__FILE__) . '/../header.php';
         </div>
     </div>
     <div class="item item-d">
-        <h2>My Watchlist</h2>
-        <div class="watch-grid watch-list">
+        <h2>My Favorite Movies</h2>
+        <div class="watch-grid favorite-movies-list">
         </div>
     </div>
 </div>
 
-
-
-
-
-
 <?php showAccountModal($loggedin); ?>
+
 <div class="mobile-menu-cover mobile-menu-trigger"></div>
 <script src="/assets/js/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <!-- The Movie Database js-->
 <script src="/assets/js/themoviedb.js"></script>
 <script src="/base.js"></script>
-<script src="watchlist.js"></script>
+<script src="favorites.js"></script>
 </body>
 </html>
